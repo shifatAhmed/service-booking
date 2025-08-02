@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\controllers\api;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ServiceController;
-
+use App\Http\Controllers\BookingController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,12 +15,16 @@ use App\Http\Controllers\ServiceController;
 |
 */
 
-// Public routes
+//Public routes
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
-//Authenticted routes
+//Authenticated routes
 Route::middleware('auth:sanctum')->group(function () {
+    
+    Route::post('/bookings', [BookingController::class, 'store']);
+    Route::get('/bookings', [BookingController::class, 'myBookings']);
+    Route::get('/admin/bookings', [BookingController::class, 'allBookings']);
 
     Route::get('/services', [ServiceController::class, 'index']);
     Route::post('/services', [ServiceController::class, 'store']);
