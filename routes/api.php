@@ -21,13 +21,17 @@ Route::post('/login', [AuthController::class, 'login']);
 
 //Authenticated routes
 Route::middleware('auth:sanctum')->group(function () {
-    
-    Route::post('/bookings', [BookingController::class, 'store']);
-    Route::get('/bookings', [BookingController::class, 'myBookings']);
-    Route::get('/admin/bookings', [BookingController::class, 'allBookings']);
 
     Route::get('/services', [ServiceController::class, 'index']);
-    Route::post('/services', [ServiceController::class, 'store']);
-    Route::put('/services/{id}', [ServiceController::class, 'update']);
-    Route::delete('/services/{id}', [ServiceController::class, 'destroy']);
+    Route::post('/bookings', [BookingController::class, 'store']);
+    Route::get('/bookings', [BookingController::class, 'myBookings']);
+
+    //routes for Admin only
+    Route::middleware('admin')->group(function () {
+        Route::post('/services', [ServiceController::class, 'store']);
+        Route::put('/services/{id}', [ServiceController::class, 'update']);
+        Route::delete('/services/{id}', [ServiceController::class, 'destroy']);
+        Route::get('/admin/bookings', [BookingController::class, 'allBookings']);
+
+    });
 });
