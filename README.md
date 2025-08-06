@@ -1,5 +1,6 @@
 
-# Service Booking API - Service Booking API is a Laravel-based RESTful application that allows customers to browse available services and make bookings, 
+#  
+Service Booking API - Service Booking API is a Laravel-based RESTful application that allows customers to browse available services and make bookings,
 while enabling administrators to manage services and view all bookings. It features secure authentication using Laravel Sanctum, role-based access 
 control, and clean API endpoints for easy integration with frontend applications.
 
